@@ -1,0 +1,463 @@
+#!/! /d/documentatation/t 
+
+The canonical documentation for the fith system is written in /fiqh/markdown/,
+a least-common-denominator [markdown] dialect conservatively extended to
+include inlined fith denotation and reference (q.v.).
+
+Square brackets, i.e. markdown links, declare intention, meaning that a fith
+reader must always attempt to interpret such strings using the systemwide
+reference resolver.
+
+Parens immediately following a square-bracket unit, if any, enclose arguments
+to the resolver of the reference string, if any.  If the reference string can
+be recognized and successfully interpreted at all then it must be recognized
+and successfully interpreted without free variables, meaning that there must
+always be a fully and uniquely determined default (or "indexical") value for
+any interpreted reference, and therefore parens-enclosed arguments are always
+optional.
+
+Reference and denotation can appear anywhere in the document and must be
+interpreted identically regardless of enclosing square brackets -- the brackets
+merely distinguish optional from mandatory resolution (and provide a syntax for
+parameterization, although parameter passing is discouraged when not absolutely
+necessary). References occuring freely (without enclosing brackets) in the text
+are termed "implicit", in contrast to "explicit" bracket-enclosed references.
+
+This section includes an example in its first paragraph, namely the string
+/fiqh/markdown/, an implicit reference semantically and functionally identical
+to the explicit reference [/fiqh/markdown/] except for the provision that it
+may or may not be recognized, interpreted and resolved by any given fith
+reader, and later on, the explicit reference [markdown], which any conforming
+fith reader will recognize lexically and must at least attempt to parse,
+interpret and resolve (and fail gracefully if it does fail).
+
+The references in this introductory document also serve as live examples of
+fith reference and denotation syntax and semantics, which is an important and
+pervasive part of all of the fith system's components, and thus can also be
+used as a kind of "gentle introduction" to some very broad concepts that might
+otherwise be difficult to find a sensible entry point into -- and this document
+collection is in fact organized just this way, with this "how to use the
+documentation" text doing double duty as a "gentle introduction to the core
+concepts of the system" text.
+
+...and in fact triple duty as a project outline, as described below the heading
+immediately following this paragraph. 
+
+### workflow ## a formalized fith development workflow #
+
+Before coming into existence as a finished and published unit of documentation,
+each unit, component section begins as an outline liberally populated with
+/oops/ denotations at sites of text yet to be written, which yields a structure
+to-be-filled-in-progressively that in turn reflects the actual progress of the
+implementation of the unit documented therein -- in other words, the
+chronological order of a unit of work on the fith project is:
+
+- a draft describing and specifying an as-yet-unimplemented unit is written
+(preferably in future tense, to disambiguating finished and unfinished work)
+and committed (somehow) to a persistent storage pool (of some kind)
+
+- the draft is given an appropriate fixed place in the outline thus described,
+and the placement effects an update to the version control log of the aggregate
+"documentation" master, which is duly committed
+
+- the component described is implemented and implementation is duly committed to
+version control
+
+- the implemented component is documented (in past-perfect tense) using the
+uture-tense initial draft as a rough draft of the final, published
+documentation.
+
+This formalized workflow also (not coincidentally) happens to instantiate
+fith's pervasive [init,walk,eval,quit] abstraction, also known as [reduction],
+thus can -- and therefore will -- serve as our "gentle introduction" to that
+abstraction, and likewise will further introduce [block], [hash], [qid] in the
+course of specifying how (and where) these drafts are to be stored prior to
+placement and how these stored drafts are to be identified and tracked. 
+
+Introduction of [block], [hash] and [qid] will then (not coincidentally) kick
+off a chain of immediate logical consequence from which the introduction of
+[qidspace], [index] and [journal] will emerge by necessity, and from that will
+emerge the introduction of [index space] and [qidspace] generically, from that
+in turn an introduction of [space], [extent], and [topos] generically, from in
+turn a fuller theoretical treatment of [Kripke semantics], the guiding [logic]
+and [category theory] of the system, and even some of the "more philosophy than
+computer science per se" topics like the guiding [ontology] and [mereology] and
+the guiding interpretation of [modality].  Fortunately, these are all anchored
+to a concrete and practical realization in code when they do arise.
+
+We now return to the practical and begin an introduction to the type /oops/ and
+its denotation by actually inserting one, here, thus:
+
+[/oops/under/documented/]
+
+Note that this is an explicit reference, which, in addition to hinting the fith
+reader, also helpfully indicates to human readers that the bracketed string is
+(or, rather, is at least believed to be) a reference the fith reader will
+recognize and can interpret, explicitly or implicitly. Thus, a stylistic
+convention of making a frequently used reference explicit at least once in the
+scope of a text and implicit otherwise is sufficient for reference to be
+"self-documenting", in that both fith reader and human readers (pun on "reader"
+fully intentional and made advisedly, q.v.) have opportunity to evaluate
+implicit references in light of the specific knowledge of a "declaration of
+intent" implied by the bracket notation.
+
+That explicit reference, and its implicit equivalent /oops/under/documented/,
+are a specific type of reference called a [denotation]. A denotation is,
+roughly, a reference "without free variable" in the same sense a literal and a
+variable are both values but a literal is a value "without free variable". 
+
+The denotation /oops/under/documented/ "does what it says on the tin" --
+denotes an insufficiency of documentation -- by appearing literally in the text
+at the literal place of the insufficiency to which it means to refer by
+ostention, or, in simpler and clearer terms, point to. So it *refers*, and also
+*denotes*, but to what exactly does it refer, and what exactly does it denote?
+It's clear enough what refers to. What it *denotes* is itself, and it is a fith
+atom of the abstract type "oops", a first-class object generically representing
+many diverse kinds of error, exception, failure, ambiguity, and deviation from
+"normal" program or data flow (which itself is a specific case of a more
+generic type 'divergence', q.v.).
+
+### a brief digression into heavy theory that you can safely skip over if you want #
+
+Now that the concept "type" has been introduced it should be at least noted
+that references, like types of fith atom generally, have type in the finite
+scope of a type domain, in this case the domain /fiqh/text/, and that there is
+no universal domain -- it is always errant for the variable "domain" to occur
+free -- but q.v. actual discussion, rather than mere mention, of type and type
+domain.
+
+For now, suffice it to say that fith-the-programming-language is both a
+"strongly typed" language in the normal sense and also something we might
+flippantly term a "strongly strongly typed" language -- it also has
+higher-order type (as in Haskell, ML et al), and for roughly the same reason
+(namely parametric polymorphism), but gets there by way of its own
+idiosyncratic construction of higher-order type tailored to the needs of its own
+idiosyncratic catenative denotational and operational semantics.
+
+It's unclear what exactly "parametric polymorphism" should mean in fith
+because, being [catenative], fith the language lacks a native concept of arity
+unambiguous enough to be of use here. Fith words simply consume arguments from
+stack and push return values back to stack, and their number is either exactly
+one or "we have no idea how many", exclusive. This is a design decision --
+there are any number of ways a concept of arity could be introduced to a
+catenative language but there doesn't seem to be a clear "right" or "wrong"
+way, therefore it seems wiser to leave the concept out of the specification
+altogether than make committment that at the moment seems irreducably
+arbitrary. (This may prove wrong as the theory of catenative languages matures,
+but here we are and so there it is.) The resulting inability to deal with
+parametric polymorphism in a less idiosyncratic way is arguably a disadvantage,
+but it's one we might as well embrace as an opportunity for exploration, on
+[advice from Don B] -- for a work of computer science already eccentric enough
+to have Donald Barthelme in its bibliography, one must expect such things to be
+par for the course.
+
+## the section in which we can now give you a table of contents #
+### ostention ## reference is ostension, in fith as in language in general #
+### notation ## some general principles and conventions governing notation #
+### Xt ## the Xt structure #
+### reduction ## generalized form of a recursive non-boolean function #
+### oops ## error, exception and exit generalized #
+### fix ## fix filesystem node and path references #
+
+## the section in which we can now give you a table of contents #
+
+Two things to note here are, one, that the table of contents is in the form of
+a paragraph led by a markdown h2 heading and followed by a tail of markdown h3
+headings, two, that the entry in the table of contents above and the
+corresponding section header in the chapter below are exactly textually
+identical.
+
+The most immediately useful reason for this is that in acme, or anything with
+sufficiently equivalent behavior, you can jump back and forth between the table
+entry and the text by b3 on the whole line -- as in acme, plain text is already
+"a little bit hyper" and "a little bit structured".
+
+If this is familiar from [acme] and [plumbing] in [plan9] or [inferno], then
+it's sufficient to say fiqh text is a direct genealogical descendent of these,
+and makes no claims to be "original" but rather aims to be a further
+exploration and a "radical generalization" of plan9 insights that have proven
+their worth -- in other words, its first move is to climb onto the shoulders of
+a giant.
+
+fiqh's contribution to the stock of insight, if any, is "plumbing rules for
+plain text are implicit reference, lightweight markup is explicit reference --
+when both are equally available and clearly demarcated, decisions to refer
+implicitly or explicitly can be made appropriately to the nature of the
+specific reference and referent, as they ought to be, rather than dictated by
+implementation detail".
+
+Another consequence of this way of expressing structure in markdown headings is
+that the only concrete difference between "table of contents" and "text" is the
+presence or absence of text below the headings -- a chapter of the text becomes
+its own table of contents (or index, or some other kind of "map of") simply by
+programmatically removing non-heading text lines, an operation simple enough
+that a humble grep(1) is sufficient for it.
+
+Introducing a further purely conventional rule that each paragraph is a "block"
+and a block always has a "hash" gives us the beginning of a way to realize the
+inverse operation --- producing a text from its t.o.c. by populating the space
+under each heading with its text, paragraph by paragraph.
+
+## the section whose subsections are the ones promised in the introduction #
+### qid ## an mmutable object is addressed by its qid #
+### block ## 8k blocks of uninterpreted bytes #
+### hash ## an immutable block is addressed by the SHA-1 hash of its content #
+### index ## is briefly introduced and then quickly deferred #
+### space ## is briefly introduced and then quickly deferred #
+### extent ## is briefly introduced and then quickly deferred #
+### spacetime ## is briefly introduced and then quickly deferred #
+### ontology ## is briefly introduced and then quickly deferred #
+### modality ## is briefly introduced and then quickly deferred #
+
+## the section whose subsections are the ones promised in the introduction #
+
+There are two distinct kinds of thing that are not realized as hashed blocks,
+namely, qid-addressed objects with mutable state and varying concrete
+representations of an abstract value that is type-self-identitical. 
+
+Every other kind of thing is concretely represented as a hashed block or,
+recursively, an aggregate of hashed blocks denoted by hashes inlined in a
+hashed block.
+
+Every block is the unique instance of its own type unless governed by a
+type-identity rule and its hash is the unique instance of (reference to value)
+for each such (value).
+
+For any block and hash, there is exactly one 'yes' typed 'ref'
+relation between them, thus yes|no maps to boolean true|false.
+
+### qid ## an mmutable object is addressed by its qid #
+
+Qid is a reference to a mutable object such that hash : block :: qid : object
+for each of the object's unique states. Any object directly referenced by qid
+must be representable concretely in no more than 8k of contiguous memory space,
+but indirect reference and aggregation can be accomplished by inline qid or
+hash references in the 8k referent block, so referent objects may be arbitrary size as
+long as they aren't constrained to direct reference. 
+
+The rule (qid : referentailly opaque :: hash : referentially transparent) is an
+immediate implication of the definitions of hash and qid reference.
+
+Qid is a 128-bit value whose initial byte is one of E7 or E9, or E5 or E6 iff
+it is any tuple of shorter E5 or E6 atoms (that is, qid of E7 and E9 type are
+atomic where qid of E5 and E6 type are not). 
+
+/fish/qid/t is denoted Q/../t and the qidspace rooted HERE.
+
+/fix/qid/t is denoted /q/../t and indexes the qidspace rooted as described in the denoted absolute or relative fix path.
+
+/fiqh/qid/t is denoted according to absent|ephemeral|fish vs extant|persistent|fix
+
+The shorter reference atoms E5 and E6 are indexes into a space that is the
+"indexical" or head member of a qidspace holding a collection of "short index
+space", making qid the algebraic closure of the types.
+
+qidspace itself is the indexical "void" member of hash space, in which qid
+referent objects (which are mutable, unlike blocks) all have a hash value of
+void (n.b. not the same as "nil", which has only one member, the hash value 0),
+because they're not immutable.
+
+### block ## 8k blocks of uninterpreted bytes #
+### hash ## an immutable block is addressed by the SHA-1 hash of its content #
+
+### index ## is briefly introduced and then quickly deferred #
+An index is one uniquely determined point in an index space -- a generic type
+of which address space, for example, is a specific subtype. Space is a free
+variable of index, and the value of index is errant or undefined if 'space' is
+unbound.
+
+### extent ## is briefly introduced and then quickly deferred #
+Extent is the generic abstract type of extensions of some bounded interval over
+some part of an index space, of which data representations of a real object's
+extent in real space and time are a specific subtype. 
+
+### spacetime ## is briefly introduced and then quickly deferred #
+Spacetime is a specific kind of index space, namely the kind that measures
+physically real space and time -- This gives 'spacetime' types the important
+additional attribute of susceptibility to empirical verification, but
+*algebraically*, spacetime is just a particular kind of index space.
+
+### ontology ## is briefly introduced and then quickly deferred #
+
+It's well known in philosophy that type-identity and token-identity are not
+equivalent, and the fith system as a whole is designed to ensure that the two
+are clearly demarcated -- one way to describe is that is the "class" and
+"instance" from OO, except type/token distinction makes sense and the
+class/instance distinction does not, even as a "useful fiction". It is a
+fiction, but not one good enough to be useful, or even good enough to be simply
+useless. It's an actively harmful fiction. This is no disrespect to Smalltalk,
+esp. in light of comments by Alan Kay (?) that the essence of Smalltalk was not
+classes or even objects but message-passing, and to focus on "objects" or
+classes and inheritance is to miss the real value of the paradigm altogether.
+
+In fith token-identity is a property only uninterpreted byte blocks can have
+and is strictly determined by hash-equality of blocks, thus any two things that
+are not concretely realized as byte blocks can be type-identical but never
+token-identical. Corrollary to this, there are no type-identities determined by block
+content or hash either, making the disjunction total.
+
+### modality ## is briefly introduced and then quickly deferred #
+
+## the section in which we can now give you a table of contents # 2
+
+Note the "2" suggesting that this is part two of the section in which we can
+now etc, and also (not coincidentally) causes this part to fail exact textual
+match to the whole heading line -- but not exact match to a heading delimited
+by hash characters any with text trailing the final hash trimmed -- and note,
+also, that this, not part one, is the part containing the actual subsection
+text.
+
+Structure can be disjoint and overlapping, illustrated by the placement of the
+level-two section "whose subsections are the ones promised in the introduction"
+*infix* in the level-two section "in which we can now give you a table of
+contents". (This also illustrates a point about the recursive structure of Xt
+in general, q.v.), and disjoint structure can be useful for texts written to be
+read linearly on the first read, where a group of interrelated concepts are
+introduced in the order most helpful for building the structure up "brick by
+brick" from foundations that must be laid first, and non-linearly on subsequent
+reads, where the relations among elements in the structure is familiar and the
+text is now being used to look up a particular element in more depth. 
+
+If this section is read in order on the first read, it's now time to disclose
+that the first paragraph contained a little white lie, because will hopefully
+have made it clear what the lie is and why it's there -- to wit, the section
+containing the actual subsection text is not this one but the *following* one,
+numbered "3".
+
+## the section in which we can now give you a table of contents # 3
+
+### ostention ## reference is ostension, in fith as in language in general #
+
+There is no single explicit mechanism or even single explicit syntax for
+declaring and defining a fith or fiqh reference because reference, as a
+phenomenon of natural language in general, is fundamentally [ostensive], and
+the overarching design and research goal of /fiqh/reference/ is to try to enact
+as close an approximation to the natural language phenomenon of [ostension] as
+can be acheived algorithmically -- If there is a mechanism or syntax for giving
+reference strings a definition then what you have is not ostension but
+[intension].
+
+Evaluation of ostensive reference is not straightforwardly [truth-functional],
+and so if reference is ostenstion then the resolver cannot be implemented as a
+straightforward "normal exit with value, or error" proedural form. The fith
+approach is to implement it via the more general form "reduction" (which,
+handily, is another of the system's pervasive and fundamental abstractions). 
+
+### reduction ## generalized form of a recursive non-boolean function #
+
+: reduction ::: 
+		  is a recursive function
+			  that *is not* guaranteed to terminate,
+			  but *is* guaranteed to 
+						at least yield 
+						at least once.
+;;
+
+### notation ## some general principles and conventions governing notation #
+
+Four things to note about the structured natural-language definition of
+"reduction" given above.
+
+- we've introduced another notation suitable for lexing and interpretation by
+the fith reader, namely, the notation for "definition".  We'll be presenting
+natural-language definitions this way in the documentation whenever it seems
+sensible to, (hopefully) frequently, to get the full advantage of the assigned
+lexical semantics.
+ 
+- the "poetic" line breaks. Whitespace in a fith reference is not significant
+in the python sense or even the (to this author's taste much saner) haskell
+layout sense -- in fact the rule in fiqh text is to assume whitespace is *not*
+preserved unless there is an *explicit* directive to preserve it -- but
+formatting frequently helps clarify how a lexer or parser will decompose text
+to underlying semantic units, so whitespace and two-dimensional layout will be
+used to that end in introductory documentation whenever it seems helpful to.
+In the "reduction" example the line breaks are reflecting the decomposition of
+the natural-language sentence into clauses delimited by "is", "that", "but" and
+"at least", and are optional because if there is a parser for the type
+"natural-language sentence", that parser will rely on recognition of the words
+as parts of speech rather than on lex/yacc style decomposition to characer
+tokens.
+
+- the surface syntax of one leading colon, three trailing colons, two trailing
+semicolons. This is not at all arbitrary or whimsical -- it denotes the
+placement of the text of the definition in an [Xt] structure (q.v.) with
+members that cannot be [absent] but can be [empty], denoted by the delimiter
+characters with no non-whitespace text between them, along with the nonempty
+members.
+
+
+### Xt ## the Xt structure #
+
+Xt is fundamental to fith in much the same way the cons cell fundamental to
+lisp (and of course can implement lisp's cons and list), and denoting the Xt
+structure is fundamental to how the fith and fiqh reference and denotation
+mechanisms work in general.
+
+:Xt::: is 
+		structurally a doubly-linked list or binary tree node, with some
+		additional invariants governing structure of the cell and the data in
+		members. 
+;
+
+
+:Xt::: is a structure denoted by a surface syntax in which
+	all delimiters are "infix until proven otherwise",
+	all data atoms are boxed in an Xt cell (there is no notation for an unboxed atom),
+	and the structure's distinct members (t,it,left,right) may occur *unordered*.
+;
+
+:Xt::: is 
+
+	any 4-tuple from which an inferred (t,it,left,right) structure can be
+	uniquely determined either positionally or by examination of the aggregated
+	data content of the tuple members. 
+
+;;
+
+:Xt::: is the algebraic closure of fith atomic values and fith aggregates. ;
+
+In this respect fith's Xt is pointedly not analogous to lisp's sexpr. In lisp
+an atom, a cons cell and a proper list are certainly not the same thing (but
+may sometimes be treated equivalently if this allowance is explicitly coded,
+whereas in fith an atom, a cell boxing an atom and a list or tree structure
+made of such cells are all the same on a fundamental level but may be treated
+distinctly if this allowance is explicitly coded.
+
+:Xt::: is an abstract data type concretely represented by 
+		a type field 't' ; 
+		a data field named 'it' ; 
+		two tail fields named 'left' and 'right' ;;
+
+:Xt::: is a complete occurence of the unordered set {t,it,left,right} where
+		't' is a term of type 'type' ;
+		'it' is a term of type 'value' ;
+		'left' and 'right' are terms of type 'reference' ;
+
+Note that the above are all syntactically correct -- the definition of
+"reduction" that introduced the notation had two trailing semicolons, where
+these have two trailing semicolons in at least one case but only one in others,
+and worse yet, at least two of them feature infix semicolons but one of the
+declarations featuring infixes has only one, thus seems not to be properly
+terminated -- that this surface syntax is valid is a consequence of properties
+described in them.
+
+Xt's left tail refers either to nil or to exactly one atomic term which may or
+may not be the head of a singly-linked list tail, which is to say, there is a
+*stack*  "to the left of" it.
+
+Xt's right tail refers either to nil or to a linearly ordered sequence of
+values bounded below but possibly unbounded above, which is to say there is a
+*stream* "to the right of" it.
+
+### fix ## fix filesystem node and path references #
+
+In principle, an alphanumeric file name and a solidus-separated filesystem path
+are both "merely" textual references of particular types, and thus their
+interpretation can be subsumed in the more generic mechanism of fith reference
+resolution. The [fix] filesystem realizes a familiar hierarchal filesystem
+structure (namely a rooted, acyclic directed graph of file or directory nodes)
+with semantics for interpretation of names and paths as fith references, using
+Xt structure for the file nodes (it for file content, t for filesystem
+metadata) and wire structure for the links between nodes (left and right for
+"parent" and "subtree" links). 
+
